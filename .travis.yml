@@ -1,11 +1,10 @@
-language: ruby	
-rvm:	  
-- "2.2.3" 
+language: ruby
+rvm:
+- "2.2.3"
 
 notifications:
   slack: cpteam2015:HY8nk7056R3PVcSOAT1UyBHH
   
 script:
-  - travis encrypt "cpteam2015:HY8nk7056R3PVcSOAT1UyBHH" --add notifications.slack
   - rubocop
   - bundle exec rspec spec

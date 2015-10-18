@@ -1,4 +1,4 @@
-$:.push File.dirname(__FILE__)
+$LOAD_PATH.push File.dirname(__FILE__)
 
 require 'tilt/erb'
 
