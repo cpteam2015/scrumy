@@ -5,5 +5,4 @@ describe 'server', type: feature, js: true do
   end
 
   it 'has a backlog'
-  
 end
