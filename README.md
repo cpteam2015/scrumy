@@ -18,7 +18,7 @@ gem install rubocop
 ```
 puis pour **emacs** copier/coller ce code à la fin de son ***~/.emacs***
 
->```(when (>= emacs-major-version 24)  
+```(when (>= emacs-major-version 24)  
   (require 'package)  
   (add-to-list  
    'package-archives  
