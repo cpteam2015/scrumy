@@ -9,11 +9,8 @@
 #
 ################################################
 
-module Scrumy
-	class APP < Sinatra::Base
-		put '/project' do
-			@@model.addProject params
-		end
-
+class APP < Sinatra::Base
+	put '/project' do
+		@@model.addProject params
 	end
 end

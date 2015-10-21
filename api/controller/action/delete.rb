@@ -9,11 +9,8 @@
 #
 ################################################
 
-module Scrumy
-	class APP < Sinatra::Base
-		delete '/project' do
-			
-		end
-
+class APP < Sinatra::Base
+	delete '/project' do
+		
 	end
 end

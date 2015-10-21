@@ -9,10 +9,13 @@
 #
 ################################################
 
-module Scrumy
-	class APP < Sinatra::Base
-		get '/project' do
-			@@model.getProject
-		end
+
+class APP < Sinatra::Base
+	get '/project' do
+		"hello"
 	end
+	get '/' do
+		"hello"
+	end
+
 end

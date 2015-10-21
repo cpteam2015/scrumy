@@ -1,12 +1,13 @@
-%w(create read update delete helper).each do |action|
-    require_relative "action/#{action}"
-end
-
-require "sinatra"
+require "sinatra/base"
 require "pp"
 require "json"
 
-module Scrumy
-	class APP < Sinatra::Base
-	end
+
+%w(create read update delete).each do |action|
+    require_relative "action/#{action}"
 end
+
+class APP < Sinatra::Base
+	run!
+end
+
