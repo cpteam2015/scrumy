@@ -1,7 +1,7 @@
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 
-require_relative '../app'
+require_relative '../server'
 
 Capybara.javascript_driver = :poltergeist
 
