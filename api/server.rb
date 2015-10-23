@@ -33,10 +33,16 @@ class ScrumyAPI < Sinatra::Base
     halt 200, connector.find(params[:id]).to_json
   end
 
+  post '/user_stories/' do
+    content_type :json
+    connector = settings.us_connector
+    halt 200, connector.insert(request.body.read).to_json
+  end
+
   put '/user_stories/:id' do
     content_type :json
     connector = settings.us_connector
-    halt 200, connector.insert(params[:id]).to_json
+    halt 200, connector.replace(request.body.read).to_json
   end
 
   put '/projects' do
