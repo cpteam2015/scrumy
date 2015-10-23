@@ -2,6 +2,8 @@ $LOAD_PATH.push File.dirname(__FILE__)
 
 require 'tilt/erb'
 
-require 'app'
+require 'api/server'
+require 'app/server'
 
-run Sinatra::Application
+run Rack::URLMap.new('/' => ScrumyApp.new,
+                     '/api/v1' => ScrumyAPI.new)

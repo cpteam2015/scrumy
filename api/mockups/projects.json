@@ -1,0 +1,33 @@
+[
+    {
+	"_id" : "56278240e4b0bab43f8a9da4",
+	"name": "Scrumy",
+	"members": [
+            "Ousmane",
+            "Netty",
+            "Grégory"
+	],
+	"description": "conduite de projet",
+	"git_repo": "git@github.com:cpteam2015/scrumy_api.git",
+	"backlog": [
+            "56288715e4b0dba439a3edfc"
+	],
+	"sprints": [
+            {
+		"name": "S1",
+		"start_date": "20/10/2015",
+		"user_stories": [
+                    "56288715e4b0dba439a3edfc"
+		],
+		"tasks": [
+                    {
+			"name": "T1",
+			"description": "Définir le schéma de la BDD et les routes de l'API",
+			"duration": 0.5,
+			"dependencies": []
+                    }
+		]
+            }
+	]
+    }
+]

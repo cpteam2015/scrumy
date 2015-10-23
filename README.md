@@ -9,6 +9,16 @@ Installation de **sinatra** (au cremi faudra mettre --user-install)
 ```
 $ sudo gem install [--user-install] sinatra
 ```
+### Pour lancer le serveur
+Avec **Rack**
+```
+$ rackup -p <port>
+```
+Et avec **rerun**
+```
+$ rerun "rackup -p <port>"
+```
+
 ### Chartes de dev et d'utilisation de git
 Pour **Ruby** on essaiera de respecter les bonnes pratiques ennoncées dans ce wiki : https://github.com/bbatsov/ruby-style-guide. <br /> 
 L'analyseur de code [RuboCop](https://github.com/bbatsov/rubocop) se base exclusivement sur ce document et nous obligera plus ou moins à respecter le 'style guide' de la communauté Ruby.
