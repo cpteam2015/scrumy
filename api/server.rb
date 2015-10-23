@@ -32,4 +32,11 @@ class ScrumyAPI < Sinatra::Base
     connector = settings.us_connector
     halt 200, connector.find(params[:id]).to_json
   end
+
+ put '/projects' do
+    content_type :json
+    connector = settings.project_connector
+    doc = JSON.parse(request.body.read)
+    halt 200, connector.replace(doc).to_json
+  end
 end
