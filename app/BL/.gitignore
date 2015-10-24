@@ -2,8 +2,3 @@
 !/.gitignore
 !/.sencha
 build/
-sass/
-ressources/
-packages/
-overrides/
-modern/
