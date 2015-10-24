@@ -1,3 +1,4 @@
+require 'sinatra'
 require 'sinatra/base'
 require 'json'
 require 'pp'
@@ -6,6 +7,9 @@ require_relative 'db/connector'
 
 # Application pour l'API de Scrumy
 class ScrumyAPI < Sinatra::Base
+  before do
+    content_type 'application/json'
+  end
   # configure do
   #   # Connecteur pour la collection de projets
   #   args = {
@@ -29,8 +33,8 @@ class ScrumyAPI < Sinatra::Base
   end
   get '/mockups/p' do
     pp 'get mockups'
-    json = JSON.parse File.read('api/mockups/projects.json')
-    halt 200, json.to_json
+    r = JSON.parse File.read('api/mockups/projects.json')
+    halt 200, r.to_json
   end
 
 
