@@ -36,6 +36,11 @@ class ScrumyAPI < Sinatra::Base
     r = JSON.parse File.read('api/mockups/projects.json')
     halt 200, r.to_json
   end
+  get '/mockups/bl' do
+    pp 'get bl'
+    r = JSON.parse File.read('api/mockups/bl.json')
+    halt 200, r.to_json
+  end
 
 
   get '/user_stories/:id' do
