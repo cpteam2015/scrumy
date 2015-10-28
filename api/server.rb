@@ -36,16 +36,22 @@ class ScrumyAPI < Sinatra::Base
     r = JSON.parse File.read('api/mockups/projects.json')
     halt 200, r.to_json
   end
-  get '/mockups/bl' do
-    pp 'get bl'
+  get '/mockups/backlog' do
+    pp "backlog #{params}"
     r = JSON.parse File.read('api/mockups/bl.json')
     halt 200, r.to_json
   end
 
+  put '/mockups/backlog/:id' do |id|
+    pp "Put backlog #{id}"
+    pp request.body.read
+    halt 200
+  end
 
-  get '/user_stories/:id' do
+  get '/user_stories/' do
     content_type :json
     connector = settings.us_connector
     halt 200, connector.find(params[:id]).to_json
   end
+
 end

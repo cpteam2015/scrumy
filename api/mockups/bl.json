@@ -1,6 +1,4 @@
-{
-    "_id": "56288715e4b0dba439a3edfc",
-    "us" : [
+[
         {
             "id":1,
             "description":"En tant que USER, je souhaite tout casser :p",
@@ -16,5 +14,4 @@
             "required":[1]
         }
 
-    ]
-}
+]

@@ -1,4 +1,4 @@
-Ext.define('Scrumy.view.backlog.BacklogModel',{
+Ext.define('Scrumy.view.main.backlog.BacklogModel',{
 	extend: 'Ext.app.ViewModel'
 	,requires: ['Scrumy.model.Backlog']
 	,alias: 'viewmodel.backlog'
