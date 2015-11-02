@@ -27,6 +27,13 @@ class ScrumyAPI < Sinatra::Base
     halt 200, connector.find_all.to_json
   end
 
+  put '/projects' do
+    content_type :json
+    connector = settings.project_connector
+    doc = JSON.parse(request.body.read)
+    halt 200, connector.replace(doc).to_json
+  end
+
   get '/user_stories/:id' do
     content_type :json
     connector = settings.us_connector
@@ -51,10 +58,11 @@ class ScrumyAPI < Sinatra::Base
     halt 200, connector.delete(params[:id]).to_json
   end
 
-  put '/projects' do
+  post '/tasks/:id' do
     content_type :json
-    connector = settings.project_connector
-    doc = JSON.parse(request.body.read)
-    halt 200, connector.replace(doc).to_json
+    connector = settings.us_connector
+    us = connector.find(params[:id])
+    us['tasks'] = JSON.parse request.body.read
+    halt 200, connector.replace(us)
   end
 end
