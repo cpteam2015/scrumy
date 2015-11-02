@@ -42,6 +42,7 @@ class ScrumyAPI < Sinatra::Base
     halt 200, r.to_json
   end
 
+<<<<<<< HEAD
   put '/mockups/backlog/:id' do |id|
     pp "Put backlog #{id}"
     pp request.body.read
@@ -49,9 +50,47 @@ class ScrumyAPI < Sinatra::Base
   end
 
   get '/user_stories/' do
+=======
+  put '/projects' do
+    content_type :json
+    connector = settings.project_connector
+    doc = JSON.parse(request.body.read)
+    halt 200, connector.replace(doc).to_json
+  end
+
+  get '/user_stories/:id' do
+>>>>>>> cpteam2015/master
     content_type :json
     connector = settings.us_connector
     halt 200, connector.find(params[:id]).to_json
   end
 
+<<<<<<< HEAD
+=======
+  post '/user_stories/' do
+    content_type :json
+    connector = settings.us_connector
+    halt 200, connector.insert(request.body.read).to_json
+  end
+
+  put '/user_stories/:id' do
+    content_type :json
+    connector = settings.us_connector
+    halt 200, connector.replace(request.body.read).to_json
+  end
+
+  delete '/user_stories/:id' do
+    content_type :json
+    connector = settings.us_connector
+    halt 200, connector.delete(params[:id]).to_json
+  end
+
+  post '/tasks/:id' do
+    content_type :json
+    connector = settings.us_connector
+    us = connector.find(params[:id])
+    us['tasks'] = JSON.parse request.body.read
+    halt 200, connector.replace(us)
+  end
+>>>>>>> cpteam2015/master
 end

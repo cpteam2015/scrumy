@@ -4,7 +4,7 @@
             "description":"En tant que USER, je souhaite tout casser :p",
             "cost":5,
             "priority": "A",
-            "required":[]
+            "required":[0]
         },
         {
             "id":2,
