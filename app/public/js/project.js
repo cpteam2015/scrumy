@@ -7,7 +7,7 @@ Project = React.createClass({displayName: "Project",
       "onClick": this.props.onClick.bind(null, this.props.id),
       "className": "",
       "aria-labelledby": "dropdownMenu"
-    }, this.props.name);
+    }, React.createElement("a", null, this.props.name));
   }
 });
 
@@ -17,8 +17,19 @@ ProjectList = React.createClass({displayName: "ProjectList",
       data: {
         projects: [],
         current: 0
-      }
+      },
+      backlog: true
     };
+  },
+  selectBacklog: function() {
+    return this.setState({
+      backlog: true
+    });
+  },
+  selectSprints: function() {
+    return this.setState({
+      backlog: false
+    });
   },
   "delete": function() {
     var current, projects;
@@ -50,24 +61,46 @@ ProjectList = React.createClass({displayName: "ProjectList",
         "onClick": this.changeCurrent
       }));
     }
-    return React.createElement("div", {
+    return React.createElement("div", null, React.createElement("div", {
+      "className": "btn-group",
+      "role": "group",
+      "aria-label": "..."
+    }, React.createElement("div", {
       "className": "dropdown"
     }, React.createElement("button", {
-      "className": "btn btn-default dropdown-toggle",
       "type": "button",
+      "className": "btn btn-default dropdown-toggle",
       "id": "dropdownMenu",
       "data-toggle": "dropdown",
       "aria-haspopup": "true",
       "aria-expanded": "true"
-    }, (projects.length !== 0 ? projects[current].name : void 0), React.createElement("span", {
+    }, React.createElement("p", null, (projects.length !== 0 ? projects[current].name : void 0), React.createElement("span", {
       "className": "caret"
-    })), React.createElement("ul", {
-      "className": "dropdown-menu"
-    }, list), React.createElement(EditProject, {
+    }))), React.createElement("button", {
+      "type": "button",
+      "className": "btn btn-default"
+    }, React.createElement(EditProject, {
       "project": projects[current]
-    }), React.createElement(DeleteProject, {
+    })), React.createElement(DeleteProject, {
       "handle": this["delete"]
-    }), React.createElement(AddProject, null));
+    }), React.createElement("button", {
+      "type": "button",
+      "className": "btn btn-default"
+    }, React.createElement(AddProject, null)), React.createElement("ul", {
+      "className": "dropdown-menu"
+    }, list))), React.createElement("nav", {
+      "role": "navigation"
+    }, React.createElement("ul", {
+      "className": "nav nav-tabs"
+    }, React.createElement("li", {
+      "onClick": this.selectBacklog,
+      "role": "presentation",
+      "className": (this.state.backlog ? 'active' : void 0)
+    }, React.createElement("a", null, "Backlog")), React.createElement("li", {
+      "onClick": this.selectSprints,
+      "role": "presentation",
+      "className": (!this.state.backlog ? 'active' : void 0)
+    }, React.createElement("a", null, "Sprints")))));
   }
 });
 
@@ -83,12 +116,14 @@ AddProject = React.createClass({displayName: "AddProject",
 
 DeleteProject = React.createClass({displayName: "DeleteProject",
   render: function() {
-    console.log(this.props.handle);
-    return React.createElement("span", null, React.createElement("a", {
+    return React.createElement("span", null, React.createElement("button", {
+      "type": "button",
+      "className": "btn btn-default"
+    }, React.createElement("a", {
       "data-toggle": "modal",
       "data-target": "#confirmModal",
       "className": "material-icons"
-    }, "delete"), React.createElement(DeleteConfirm, {
+    }, "delete")), React.createElement(DeleteConfirm, {
       "handle": this.props.handle
     }));
   }
