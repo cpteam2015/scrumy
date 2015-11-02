@@ -18,6 +18,8 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/1.2.0/superagent.js"></script>
+    <script src="https://cdn.jsdelivr.net/refluxjs/0.2.11/reflux.min.js"></script>
+
   </head>
 
   <body>
@@ -25,13 +27,8 @@
       <div class="container-fluid">
 	<div class="navbar-header">
 	  <a class="navbar-brand" href="/">
-            Liste de Projets
+            Gestion de Projets
 	  </a>
-	</div>
-	<div class="collapse navbar-collapse">
-	  <ul class="nav navbar-nav navbar-right">
-            <li id="add"></li>
-	  </ul>
 	</div>
       </div>
       
@@ -47,10 +44,6 @@
 	  <div class="modal-body">
             <div id="modal"></div>
 	  </div>
-	  <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-            <button type="button" class="btn btn-primary">Appliquer</button>
-	  </div>
 	</div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
@@ -58,6 +51,9 @@
     
     <div id="content"></div>
     
+    <script type="text/javascript" src="js/form.js"></script>
+    <script type="text/javascript" src="js/actions.js"></script>
+    <script type="text/javascript" src="js/stores.js"></script>
     <script type="text/javascript" src="js/project.js"></script>
     
   </body>
