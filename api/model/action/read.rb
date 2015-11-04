@@ -11,5 +11,11 @@
 
 module Scrumy
 	class Model
+		def getAllProjects()
+			connector = @@project_connector
+    		r = connector.find_all
+    		pp r
+    		r
+		end
 	end
 end

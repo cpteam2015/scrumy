@@ -4,33 +4,37 @@ require 'json'
 require 'pp'
 
 require_relative 'db/connector'
+require_relative 'model/model'
 
 # Application pour l'API de Scrumy
 class ScrumyAPI < Sinatra::Base
   before do
     content_type 'application/json'
   end
-  # configure do
-  #   # Connecteur pour la collection de projets
-  #   args = {
-  #     url: 'ds043324.mongolab.com:43324',
-  #     db_name: 'scrumy',
-  #     coll: 'projects',
-  #     user: 'scrumy',
-  #     pwd: 'scrumy'
-  #   }
-  #   set :project_connector, Connector.new(args)
+  configure do
+    # # Connecteur pour la collection de projets
+    # args = {
+    #   url: 'ds043324.mongolab.com:43324',
+    #   db_name: 'scrumy',
+    #   coll: 'projects',
+    #   user: 'scrumy',
+    #   pwd: 'scrumy'
+    # }
+    # set :project_connector, Connector.new(args)
 
-  #   # Connecteur pour la collection de US
-  #   args[:coll] = 'user_stories'
-  #   set :us_connector, Connector.new(args)
-  # end
+    # # Connecteur pour la collection de US
+    # args[:coll] = 'user_stories'
+    # set :us_connector, Connector.new(args)
+    set :model, Scrumy::Model.new
+  end
 
   get '/projects' do
     content_type :json
-    connector = settings.project_connector
-    halt 200, connector.find_all.to_json
+    model = settings.model
+    pp model.getAllProjects
+    [].to_json
   end
+
   get '/mockups/p' do
     pp 'get mockups'
     r = JSON.parse File.read('api/mockups/projects.json')
@@ -42,15 +46,13 @@ class ScrumyAPI < Sinatra::Base
     halt 200, r.to_json
   end
 
-<<<<<<< HEAD
+
   put '/mockups/backlog/:id' do |id|
     pp "Put backlog #{id}"
     pp request.body.read
     halt 200
   end
 
-  get '/user_stories/' do
-=======
   put '/projects' do
     content_type :json
     connector = settings.project_connector
@@ -59,14 +61,11 @@ class ScrumyAPI < Sinatra::Base
   end
 
   get '/user_stories/:id' do
->>>>>>> cpteam2015/master
     content_type :json
     connector = settings.us_connector
     halt 200, connector.find(params[:id]).to_json
   end
 
-<<<<<<< HEAD
-=======
   post '/user_stories/' do
     content_type :json
     connector = settings.us_connector
@@ -92,5 +91,4 @@ class ScrumyAPI < Sinatra::Base
     us['tasks'] = JSON.parse request.body.read
     halt 200, connector.replace(us)
   end
->>>>>>> cpteam2015/master
 end
