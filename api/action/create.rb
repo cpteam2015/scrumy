@@ -6,12 +6,14 @@ class ScrumyAPI < Sinatra::Base
 	    us['tasks'] = JSON.parse request.body.read
 	    halt 200, connector.replace(us)
   	end
-  	post '/user_stories/' do
-	    content_type :json
-	    connector = settings.us_connector
-	    halt 200, connector.insert(request.body.read).to_json
+  	post '/us/:p_id' do 
+	    model = settings.model 
+  		p = JSON.parse request.body.read
+	    halt 200, model.createUS(params[:p_id],p).to_json
   	end
-  	post '/project' do
-  		
+  	post '/project' do #Tested
+  		model = settings.model
+  		p = JSON.parse request.body.read
+	    halt 200, model.createEmptyProject(p).to_json
   	end
 end
