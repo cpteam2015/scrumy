@@ -11,17 +11,30 @@
 
 module Scrumy
 	class Model
-		# put '/mockups/backlog/:id' do |id|
-		#     pp "Put backlog #{id}"
-		#     pp request.body.read
-		#     halt 200
-  # 		end
+		def updateProject(id,p)
+			c = @@project_connector
+			project = c.find id
+			project['name'] = p['name']
+			project['members'] = p['members']
+			project['description'] = p['description']
+			project['git_repo'] = p['git_repo']
+			pp c.replace(project)
+			[]
+		end
+		def updateUS(p_id,us)
+			c = @@project_connector
+			project = c.find p_id
+			bl = project['backlog']
+			for u in bl
+				if(us['id']==u['id'])
+					u.merge!(us)
+					break
+				end
+			end
+			project['backlog'] = bl
+			pp c.replace(project)
+			[]
+		end
 
-  # 		put '/projects' do
-		#     content_type :json
-		#     connector = settings.project_connector
-		#     doc = JSON.parse(request.body.read)
-		#     halt 200, connector.replace(doc).to_json
-  # 		end
 	end
 end
