@@ -6,5 +6,4 @@ notifications:
   slack: cpteam2015:HY8nk7056R3PVcSOAT1UyBHH
   
 script:
-  - rubocop
   - bundle exec rspec spec
