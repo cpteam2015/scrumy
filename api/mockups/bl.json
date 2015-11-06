@@ -1,0 +1,17 @@
+[
+        {
+            "id":1,
+            "description":"En tant que USER, je souhaite tout casser :p",
+            "cost":5,
+            "priority": "A",
+            "required":[0]
+        },
+        {
+            "id":2,
+            "description":"En tant que USER, je souhaite tout fixer :p",
+            "cost":20,
+            "priority": "B",
+            "required":[1]
+        }
+
+]
