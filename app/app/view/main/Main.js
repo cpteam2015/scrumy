@@ -33,7 +33,7 @@ Ext.define('Scrumy.view.main.Main', {
         ,{
             xtype: 'tabpanel'
             ,reference: 'mainTabPanel'
-            ,hidden: true
+            ,hidden: false
             ,items:[
                 {xtype: 'details'}
                 ,{xtype: 'backlog'}
