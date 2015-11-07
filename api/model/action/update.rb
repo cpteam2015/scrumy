@@ -35,6 +35,21 @@ module Scrumy
 			pp c.replace(project)
 			[]
 		end
+		
+		def updateTask(us_id,task) #à tester
+			c = @@project_connector
+			us = c.find us_id
+			tk = us['task']
+			for t in tk
+				if(task['id'] == t['id'])
+					t.merge!(task)
+					break
+				end
+			end
+			us['task'] = tk
+			pp c.replace(us)
+			[]
+		end
 
 	end
 end

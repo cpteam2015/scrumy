@@ -39,5 +39,20 @@ module Scrumy
 			c.replace(project)
 			[]
 		end
+		
+		def createTask(us_id, task)
+			c = @@project_connector
+			us = c.find us_id
+			newTask = {
+				id: task['id'],
+				description: task['description'],
+				us: task['us'],
+				time: task['time'],
+				required: task['required']
+			}
+			us['task'].push newTask
+			c.replace(us)
+			[]
+		end
 	end
 end
