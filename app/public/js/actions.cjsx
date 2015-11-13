@@ -1,3 +1,0 @@
-ProjectActions = Reflux.createActions [
-        'fetchList'
-]
