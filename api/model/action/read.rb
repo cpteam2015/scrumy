@@ -17,5 +17,11 @@ module Scrumy
     		pp r
     		r
 		end
+		def getProject(id)
+			connector = @@project_connector
+    		r = connector.find(id)
+    		pp r
+    		r
+		end
 	end
 end

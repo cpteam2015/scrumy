@@ -4,6 +4,13 @@ class ScrumyAPI < Sinatra::Base
 	    model = settings.model
 	    model.getAllProjects.to_json
 	end
+	get '/project/bl' do
+	    content_type :json
+	    model = settings.model
+	    model.getProject(params['_id']).to_json
+	end
+
+	# ========================
 	get '/mockups/p' do
 	    pp 'get mockups'
 	    r = JSON.parse File.read('api/mockups/projects.json')
