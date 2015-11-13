@@ -28,8 +28,13 @@ module Scrumy
 		def createUS(project_id, us)
 			c = @@project_connector
 			project = c.find project_id
+			if project['backlog'].length <= 0
+				id = 1
+			else	
+				id = project['backlog'][project['backlog'].length-1]['id'] + 1
+			end
 			newUS = {
-				id: us['id'],
+				id: id,
 				description: us['description'],
 				cost: us['cost'],
 				priority: us['priority'],

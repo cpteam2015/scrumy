@@ -4,7 +4,7 @@ Ext.define('Scrumy.model.Project',{
 	,idProperty: '_id'
 	,proxy:{
 		type: 'rest'
-		,url: '/ws/api/v1/mockups/p'
+		,url: '/ws/api/v1/projects'
 		,reader: {
 			type: 'json'
 		}

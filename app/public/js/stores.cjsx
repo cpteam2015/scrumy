@@ -1,6 +1,6 @@
 ProjectStore = Reflux.createStore
         listenables: [ProjectActions],
-        srcUrl: '/api/v1/projects',
+        srcUrl: '/ws/api/v1/projects',
         data: {projects:[], current:0},
         init: ->
                 @fetchList()
