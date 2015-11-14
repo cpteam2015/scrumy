@@ -29,7 +29,7 @@ TabContent = React.createClass
         </div>
 
 Project = React.createClass
-    mixin: [Reflux.connect(Store, 'data')]
+    mixins: [Reflux.connect(Store, 'data')]
     render: ->
         backlog = @state.data.backlog
         <div>

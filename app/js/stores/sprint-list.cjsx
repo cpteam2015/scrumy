@@ -6,10 +6,8 @@ SprintListStore = Reflux.createStore
     init: ->
         @fetch()
     getInitialState: ->
-        console.log
         @list
     setList: (l) ->
-        console.log l
         @list = l
         @fetch()
     fetch: ->

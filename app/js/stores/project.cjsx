@@ -4,13 +4,11 @@ ModalActions = require '../actions/modal'
 SprintListActions = require '../actions/sprint-list'
 
 ProjectStore = Reflux.createStore
-    getInitialState: ->
-        console.log 'h'
-        @data
     listenables: [Actions]
     data: { project: {}, backlog: true }
+    getInitialState: ->
+        @data
     init: ->
-        console.log @data
         @trigger @data
     selectBacklog: ->
         @data.backlog = true
