@@ -38,16 +38,16 @@ module Scrumy
 				description: us['description'],
 				cost: us['cost'],
 				priority: us['priority'],
-				req: us['req']
+				req: us['required']
 			}
 			project['backlog'].push newUS
 			c.replace(project)
 			[]
 		end
 		
-		def createTask(us_id, task)
+		def createTask(p,s, task)
 			c = @@project_connector
-			us = c.find us_id
+			p = c.find p
 			newTask = {
 				id: task['id'],
 				description: task['description'],
@@ -55,8 +55,12 @@ module Scrumy
 				time: task['time'],
 				required: task['required']
 			}
-			us['task'].push newTask
-			c.replace(us)
+			for s in p['sprints']
+				if s['id'] = s
+					s['tasks'].push newTask
+				end
+			end
+			c.replace(p)
 			[]
 		end
 	end

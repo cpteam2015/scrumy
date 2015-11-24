@@ -1,5 +1,5 @@
 class ScrumyAPI < Sinatra::Base
-  	post '/project/bl/' do 
+  	post '/project/bl' do 
 	    model = settings.model 
   		p = JSON.parse request.body.read
 	    halt 200, model.createUS(params['_id'],p).to_json
@@ -9,8 +9,12 @@ class ScrumyAPI < Sinatra::Base
   		p = JSON.parse request.body.read
 	    halt 200, model.createEmptyProject(p).to_json
   	end
-    post '/api/v1/project/sp/task' do
-      
+    post '/project/sp/task' do
+      model = settings.model
+      p = params['p_id']
+      s = params['sp_id']
+      t = JSON.parse request.body.read
+      halt 200, model.createTask(p,s,t).to_json
     end
   	post 'projet/us/task/:us_id' do
   		model = settings.model
