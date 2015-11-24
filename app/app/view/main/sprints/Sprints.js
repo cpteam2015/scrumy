@@ -1,23 +1,27 @@
 Ext.define('Scrumy.view.main.sprints.Sprints', {
     extend: 'Ext.panel.Panel'
-    ,requires : ['Scrumy.view.main.sprints.SprintModel']
+    ,requires : ['Scrumy.view.main.sprints.SprintsModel']
     ,controller : 'sprints'
-    ,title: 'Sprints'
+    ,title: 'Sprints Tab'
     ,alias: 'widget.sprints'
     ,viewModel : {type: 'sprints'}
-    ,layou : 'border'
     ,items :[
 		{
 			xtype: 'panel'
 			,tbar : [
 				{
-					text : 'Add a task'
-					,reference : 'addTask'
+					xtype : 'combobox'
+					,reference : 'comboSp'
+		    		,editable : false
+		    		,fieldLabel: 'Choose a sprint'
+		    		,name:'id'
+		    		,displayField: 'id'
+		    		,valueField: 'id'
+		    		,bind:{
+		    			store: '{sprints}'
+		    		}
 				}
-				,{
-					text : 'Delete a task'
-					,reference : 'delTask'
-				}
+				
 			]
 			,items : [
 				{
@@ -40,6 +44,16 @@ Ext.define('Scrumy.view.main.sprints.Sprints', {
 							disabled: true
 
 						}
+						,{
+							text : 'Add a task'
+							,reference : 'addTask'
+							,xtype : 'button'
+						}
+						,{
+							text : 'Delete a task'
+							,reference : 'delTask'
+							,xtype : 'button'
+						}
 					]
 				}
 			]
@@ -52,12 +66,15 @@ Ext.define('Scrumy.view.main.sprints.Sprints', {
 			,plugins : {
 				ptype : 'rowediting'
 				,clicksToEdit: 2
-				,pluginId : 'rowediting'
+				,pluginId : 'rowediting2'
 			}
-			//~ ,bind:{store: '{sprints}'}
-			,store : []
+			,bind:{store: '{tasks}'}
 			,columns: [
-				{header:'#', dataIndex:'id'}
+				{header:'Code', dataIndex:'id',editor:{
+                        xtype : 'textfield'
+                        ,allowBlank :false
+                    }
+                }
 				,{header:'Description',dataIndex:'description'
                     ,editor:{
                         xtype : 'textfield'

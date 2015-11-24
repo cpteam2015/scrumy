@@ -9,6 +9,21 @@ class ScrumyAPI < Sinatra::Base
 	    model = settings.model
 	    model.getProject(params['_id']).to_json
 	end
+	get '/project/sp' do
+	    content_type :json
+	    model = settings.model
+	    model.getProjectSp(params['_id']).to_json
+	end
+	get '/project/sp/task' do
+		content_type :json
+	    model = settings.model
+	    halt 200,model.getTasks(params['_id'],params['id']).to_json
+	end
+	get '/project/sp/task/pert' do
+		content_type :json
+	    model = settings.model
+	    halt 200,model.getPert(params['_id'],params['id']).to_json
+	end
 
 	# ========================
 	get '/mockups/p' do
