@@ -1,6 +1,6 @@
 Actions = require '../actions/project'
 
-ModalActions = require '../actions/modal'
+ModalActions = require '../actions/project-modal'
 SprintListActions = require '../actions/sprint-list'
 
 ProjectStore = Reflux.createStore

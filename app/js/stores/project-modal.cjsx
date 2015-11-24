@@ -1,5 +1,7 @@
+Actions = require '../actions/project-modal'
+
 ModalStore = Reflux.createStore
-        listenables: [ModalActions]
+        listenables: [Actions]
         type: ''
         newProject: {
                 name: '',
@@ -65,3 +67,5 @@ ModalStore = Reflux.createStore
         deleteMember: (index) ->
                 delete @showedProject.members[index]
                 @trigger @showedProject
+
+module.exports = ModalStore

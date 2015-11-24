@@ -1,7 +1,7 @@
 Actions = require '../actions/project-list'
 ProjectActions = require '../actions/project'
 
-ProjectListStore = Reflux.createStore
+ProjectList = Reflux.createStore
         getInitialState: ->
                 @data
         changeCurrent: (id) ->
@@ -38,4 +38,4 @@ ProjectListStore = Reflux.createStore
                                         @changeCurrent 0
                         ).bind @
 
-module.exports = ProjectListStore
+module.exports = ProjectList

@@ -1,13 +1,14 @@
 Actions = require '../actions/project-list'
 Store = require '../stores/project-list'
-ModalActions = require '../actions/modal'
+
+ModalActions = require '../actions/project-modal'
 
 AddProject = React.createClass
         render : ->
                 <a
                  onClick={ModalActions.setType.bind null, event, 'post'}
                  data-toggle="modal"
-                 data-target="#addModal"
+                 data-target="#addProject"
                  className="material-icons">
                   add
                 </a>
@@ -67,7 +68,7 @@ EditProject = React.createClass
                 <a
                  onClick={ModalActions.setType.bind null, event,'put'}
                  data-toggle="modal"
-                 data-target="#addModal"
+                 data-target="#addProject"
                  className="material-icons">
                     edit
                 </a>
@@ -93,9 +94,8 @@ ProjectList = React.createClass
                                                    key={k}
                                                    name={project.name}
                                                    onClick={Actions.changeCurrent} />
-
                                 <div className="btn-group" role="group" aria-label="...">
-                                <div className="dropdown">
+                                    <div className="dropdown">
                                         <button
                                          type="button"
                                          className="btn btn-default dropdown-toggle"
@@ -118,7 +118,7 @@ ProjectList = React.createClass
                                         <ul className="dropdown-menu">
                                                 {list}
                                         </ul>
-                                </div>
+                                    </div>
                                 </div>
 
 

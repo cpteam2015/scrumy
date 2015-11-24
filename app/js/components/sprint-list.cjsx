@@ -22,7 +22,7 @@ SprintList = React.createClass
             <a
              onClick={Actions.add}
              data-toggle="modal"
-             data-target="#sprintModal"
+             data-target="#addSprint"
              className="material-icons" >
                 add
             </a>
