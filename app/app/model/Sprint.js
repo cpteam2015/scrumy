@@ -4,7 +4,7 @@ Ext.define('Scrumy.model.Sprint',{
 	,idProperty: 'id'
 	,proxy:{
 		type: 'rest'
-		,url: '/ws/api/v1/mockups/sprints'
+		,url: '/ws/api/v1/project/sp'
 		,reader: {
 			type: 'json'
 		}
