@@ -44,6 +44,7 @@ Ext.define('Scrumy.view.main.backlog.BacklogController',{
 		context.store.sync({
 			success: function () {
 				console.log('success');
+				me.loadBL();
 			}
 			,failure : function () {
 				console.log('failure');

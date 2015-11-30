@@ -26,7 +26,14 @@ Ext.define('Scrumy.view.main.Main', {
 		    	}
 		    	,{
 		    		xtype : 'button'
+                    // ,autoEl: {tag: 'a', href: 'http://locahost/ws/', html: 'Add Project'}
 		    		,text : 'Create a fresh one'
+                    ,listeners: {
+                            click : function (b,e) {
+                            console.log('Open',b,e);
+                            window.open("ws/");
+                        }
+                    }
 		    	}
     		]
     	}
