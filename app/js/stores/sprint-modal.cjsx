@@ -5,24 +5,26 @@ SprintStore = Reflux.createStore
     newSprint: {
         id:0,
         start: "",
-        tasks: []
+        tasks: [],
+        kanban: {id: 0, url: ""}
     }
-    type: ''
+    request: ''
     currentSprint: {}
     showedSprint: {}
     getInitialState: ->
         @newSprint
-    setType: (e,type) ->
-        if type == 'put'
-            @showedSprint = @currentSprint
-        else
-            @showedSprint = @newSprint
-            @type = type
+    add: (e) ->
+        @request = 'post'
+        @showedSprint = @newSprint
+        @trigger @showedSprint
+    edit: (e) ->
+        @request = 'put'
+        @showedSprint = @currentSprint
         @trigger @showedSprint
     setCurrentSprint: (s) ->
         @currentSprint = s
     submit: (e) ->
-        switch @type
+        switch @request
             when 'post' then @send e
             when 'put' then @update e
             else console.log 'wrong request type'
@@ -47,27 +49,43 @@ SprintStore = Reflux.createStore
             ).bind @
         $("#addModal").modal 'hide'
     handleDate: (value) ->
-        @showedSprint.date = value
+        @showedSprint.start = value
         @trigger @showedSprint
     handleName: (value) ->
         @showedSprint.id = value
         @trigger @showedSprint
-    onKanban: ->
-        console.log @showedSprint.id+@showedSprint.start
-        Trello.post("/bords", {name: @showedSprint.id+@showedSprint.start})
-    onKanbanFail: ->
-        alert 'connection to Trello failed'
-    createKanban: ->
-        console.log 'success'
+    handleKanban: (value) ->
+        @showedSprint.kanban = value
+        @trigger @showedSprint
+    trelloLogIn: (onSuccess) ->
+        onError = () -> alert 'connection to Trello failed'
         Trello.authorize
-              type: "popup",
-              name: "Scrumy Application",
-              scope: {
-                read: true,
-                write: true },
-              expiration: "never",
-              success: @onKanban,
-              error: @onKanbanFail
-
+            type: "popup",
+            name: "Scrumy Application",
+            scope: {
+              read: true,
+              write: true },
+            expiration: "never",
+            success: onSuccess,
+            error: onError
+    createKanban: ->
+        kanban = @showedSprint.kanban
+        onSuccess = (() ->
+            setBoardId = ((data) -> @board = data.id).bind @
+            setListId = ((data) ->
+                            kanban.id = data.id
+                            kanban.url = data.url
+            ).bind @
+            Trello.post '/boards', { name: @showedSprint.id + " - " + @showedSprint.start }, setBoardId
+            Trello.post '/lists', { name: "Todo", idBoard: @board }, setListId
+            Trello.post '/lists', { name: "Ongoing", idBoard: @board }
+            Trello.post '/lists', { name: "Done", idBoard: @board }
+        ).bind @
+        @trelloLogIn onSuccess
+    createCard: (name) ->
+        onSuccess = (() ->
+            Trello.post '/cards' , { name: name, idList: @showedSprint.kanban.id, due: null, pos: "top" }
+        ).bind @
+        @trelloLogIn onSuccess
 
 module.exports = SprintStore
