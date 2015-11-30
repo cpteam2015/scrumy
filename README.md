@@ -9,14 +9,15 @@ Installation de **sinatra** (au cremi faudra mettre --user-install)
 ```
 $ sudo gem install [--user-install] sinatra
 ```
+### Pour installer les dépendances Javascript
+Avec **npm**
+```
+$ npm install
+```
 ### Pour lancer le serveur
-Avec **Rack**
+Avec **Gulp**
 ```
-$ rackup -p <port>
-```
-Et avec **rerun**
-```
-$ rerun "rackup -p <port>"
+$ gulp
 ```
 
 ### Chartes de dev et d'utilisation de git
