@@ -63,7 +63,7 @@ Form = React.createClass
     render : ->
         project = @state.project
         <form onSubmit={(e) ->
-                            #e.preventDefault() #pour éviter de recharger la page
+                            e.preventDefault() #pour éviter de recharger la page
                             Actions.submit e}>
             <TextInput onChange={Actions.handleName} text={project.name} id="inputName" placeholder="Nom" required="required"/>
             <TextInput onChange={Actions.handleDescription} text={project.description} id="inputDescription" placeholder="Description"/>

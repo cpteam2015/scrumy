@@ -32,7 +32,7 @@ ModalStore = Reflux.createStore
         update: (e) ->
                 request = superagent
                 request
-                        .put '/api/v1/project/' + @currentProject._id
+                        .put '/ws/api/v1/project/' + @currentProject._id
                         .type 'json'
                         .send @currentProject
                         .end ((err,res) ->
@@ -42,7 +42,7 @@ ModalStore = Reflux.createStore
         send: (e) ->
                 request = superagent
                 request
-                        .post '/api/v1/project'
+                        .post '/ws/api/v1/project'
                         .type 'json'
                         .send @newProject
                         .end ((err,res) ->
