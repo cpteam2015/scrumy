@@ -41,6 +41,7 @@ Ext.define('Scrumy.view.main.sprints.SprintsController',{
 		});
 		context.store.sync({
 			success: function () {
+				me.lookupReference('gridSprint').getStore().commitChanges();
 				console.log('success');
 			}
 			,failure : function () {
@@ -61,6 +62,7 @@ Ext.define('Scrumy.view.main.sprints.SprintsController',{
 	}
 	,loadTask : function(id){
 		var me  = this;
+		console.log("Loadtask");
 		var p_id = me.getViewModel().getParent().getView().getController().lookupReference('comboProject').getValue();
 		me.getViewModel().getStore('tasks').load({params:{'_id':p_id,'id':id}});
 	}
@@ -84,6 +86,12 @@ Ext.define('Scrumy.view.main.sprints.SprintsController',{
 		var me = this;
 		var grid  = me.lookupReference('gridSprint');
 		selected = grid.getSelectionModel().getSelection()[0];
+		var p_id = me.getViewModel().getParent().getView().getController().lookupReference('comboProject').getValue();
+		var sp_id = me.lookupReference('comboSp').getValue();
+		grid.getStore().getProxy().setExtraParams({
+			'p_id'   : p_id
+			,'sp_id' : sp_id
+		});
 		grid.getStore().remove(selected);
 		grid.getStore().sync({
 			success : function () {

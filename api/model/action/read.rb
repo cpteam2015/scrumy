@@ -32,8 +32,9 @@ module Scrumy
     		r = connector.find(p_id)
     		for sp in r['sprints'] 
     			pp sp,sp_id
-    			if sp['id'] === sp_id.to_i
-    				return sp['task']
+    			if sp['id'] === sp_id
+                    pp "eq"
+    				return sp['tasks']
     			end
     		end
     		return []

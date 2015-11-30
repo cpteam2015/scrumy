@@ -27,5 +27,37 @@ module Scrumy
 			pp c.replace(project)
 			[]
 		end
+		def deleteTask(sp,p,task)
+			c = @@project_connector
+			project = c.find p
+			sprints = project['sprints']
+			for s in sprints
+				if s['id'].eql? sp
+					for t in s['tasks']
+						if t['id'].eql? task
+							s['tasks'].delete(t)
+							break
+						end
+					end
+				end
+			end
+			# pp project
+			# project['sprints'].collect! {|s|
+			# 	if s['id'].eql? sp
+			# 		s['tasks'].collect!{ |t|
+			# 			if t['id'].eql? task
+			# 				s['tasks'].delete(t)
+			# 				pp project
+			# 				break
+			# 			end
+						
+			# 		}
+			# 	end
+			# }
+
+			pp project
+			c.replace(project)
+			[]
+		end
 	end
 end
