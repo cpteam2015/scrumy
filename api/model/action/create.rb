@@ -45,9 +45,9 @@ module Scrumy
 			[]
 		end
 		
-		def createTask(p,s, task)
+		def createTask(pr,s, task)
 			c = @@project_connector
-			p = c.find p
+			p = c.find pr
 			newTask = {
 				id: task['id'],
 				description: task['description'],
@@ -55,13 +55,12 @@ module Scrumy
 				time: task['time'],
 				required: task['required']
 			}
-			for s in p['sprints']
-				if s['id'] = s
-					s['tasks'].push newTask
+			p['sprints'].collect { |sp|
+				if sp['id'].eql? s
+					pp sp['tasks'].push newTask
 				end
-			end
+			}
 			c.replace(p)
-			[]
 		end
 	end
 end

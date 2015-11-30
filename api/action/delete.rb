@@ -5,11 +5,11 @@ class ScrumyAPI < Sinatra::Base
   		us_id = us_id['id']
 	    halt 200, model.deleteUS(params['_id'],us_id).to_json
   	end
-  	delete '/project/sp/task/' do
+  	delete '/project/sp/task/:task' do
   		model = settings.model 
-  		us_id = JSON.parse request.body.read
-  		us_id = us_id['id']
-	    halt 200, model.deleteUS(params['_id'],us_id).to_json
+  		task = JSON.parse request.body.read
+      task = task['id']
+	    halt 200, model.deleteTask(params['sp_id'],params['p_id'],task)
   	end
 
 end
