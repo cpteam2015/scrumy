@@ -1,4 +1,4 @@
-%w(create read update delete).each do |action|
+%w(create read update delete helpers).each do |action|
     require_relative "action/#{action}"
 end
 require 'pp'

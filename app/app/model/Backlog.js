@@ -4,9 +4,10 @@ Ext.define('Scrumy.model.Backlog',{
 	,idProperty: 'id'
 	,proxy:{
 		type: 'rest'
-		,url: '/ws/api/v1/mockups/backlog'
+		,url: '/ws/api/v1/project/bl'
 		,reader: {
 			type: 'json'
+			,rootProperty: 'backlog'
 		}
 	}
 });

@@ -1,17 +1,22 @@
 Ext.define('Scrumy.view.main.backlog.Backlog', {
     extend: 'Ext.panel.Panel'
-    ,requires : ['Scrumy.view.main.backlog.BacklogModel']
+    ,requires : ['Scrumy.view.main.backlog.BacklogModel','Scrumy.store.Priority','Scrumy.store.Cost']
     ,controller : 'backlog'
     ,title: 'Backlog'
     ,alias: 'widget.backlog'
     ,viewModel : {type: 'backlog'}
-    ,layou : 'border'
+    
     ,items: [
         {
             xtype: 'panel'
             ,tbar: [
                 {
                     text : 'Add a User Story'
+                    ,reference : 'addUSbtn'
+                }
+                ,{
+                    text : 'Delete a User Story'
+                    ,reference : 'delUSbtn'
                 }
 
             ]
@@ -36,14 +41,22 @@ Ext.define('Scrumy.view.main.backlog.Backlog', {
                 }
                 ,{header:'Cout',dataIndex:'cost'
                     ,editor:{
-                        xtype : 'textfield'
+                        xtype : 'combobox'
                         ,allowBlank :false
+                        ,queryMode : 'local'
+                        ,store : {type:'cost'}
+                        ,displayField : 'value'
+                        ,valueField : 'value'
                     }
                 }
                 ,{header:'Priorité',dataIndex:'priority'
                     ,editor:{
-                        xtype : 'textfield'
+                        xtype : 'combobox'
                         ,allowBlank :false
+                        ,queryMode : 'local'
+                        ,store : {type:'priority'}
+                        ,displayField : 'value'
+                        ,valueField : 'value'
                     }
                 }
                 ,{header:'Dependances',dataIndex:'required'
