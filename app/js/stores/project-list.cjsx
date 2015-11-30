@@ -13,7 +13,7 @@ ProjectList = Reflux.createStore
                 current: 0
         },
         listenables: [Actions],
-        srcUrl: '/api/v1/projects',
+        srcUrl: '/ws/api/v1/projects',
         init: ->
                 @fetchList()
         delete: ->

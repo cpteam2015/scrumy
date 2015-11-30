@@ -20,7 +20,7 @@ var shell = require('gulp-shell');
 gulp.task('default', ['browserify', 'ruby']);
 
 gulp.task('ruby', shell.task([
-    'rackup'
+    'rackup -p 4567'
 ]));
 
 gulp.task('browserify', function(){

@@ -21,6 +21,10 @@ Ext.define('Scrumy.view.main.sprints.Sprints', {
 		    			store: '{sprints}'
 		    		}
 				}
+				,{
+					xtype : 'button'
+					,text : 'Create a sprint'
+				}
 				
 			]
 			,items : [
@@ -52,6 +56,11 @@ Ext.define('Scrumy.view.main.sprints.Sprints', {
 						,{
 							text : 'Delete a task'
 							,reference : 'delTask'
+							,xtype : 'button'
+						}
+						,{
+							text : 'Show Kanban'
+							,reference : ''
 							,xtype : 'button'
 						}
 					]

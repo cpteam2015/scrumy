@@ -27,7 +27,7 @@ SprintStore = Reflux.createStore
     update: (e) ->
         request = superagent
         request
-            .put '/api/v1/sprint/' + @currentSprint._id
+            .put '/ws/api/v1/sprint/' + @currentSprint._id
             .type 'json'
             .send @currentSprint
             .end ((err,res) ->
@@ -37,7 +37,7 @@ SprintStore = Reflux.createStore
     send: (e) ->
         request = superagent
         request
-            .post '/api/v1/project'
+            .post '/ws/api/v1/project'
             .type 'json'
             .send @newSprint
             .end ((err,res) ->
