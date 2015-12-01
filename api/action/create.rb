@@ -16,6 +16,12 @@ class ScrumyAPI < Sinatra::Base
       t = JSON.parse request.body.read
       halt 200, model.createTask(p,s,t).to_json
     end
+    post '/project/sp/:p_id' do
+          model = settings.model
+          p = params['p_id']
+          t = JSON.parse request.body.read
+          halt 200, model.createSprint(p,t).to_json
+    end
   	post 'projet/us/task/:us_id' do
   		model = settings.model
   		task = JSON.parse request.body.read
