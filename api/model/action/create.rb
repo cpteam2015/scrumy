@@ -62,5 +62,17 @@ module Scrumy
 			}
 			c.replace(p)
 		end
+        def createSprint(pr,task)
+			c = @@project_connector
+			p = c.find pr
+			newSprint = {
+				id: task['id'],
+				start: task['start'],
+				tasks: task['tasks'],
+				kanban: task['kanban']
+			}
+			p['sprints'].push newSprint
+			c.replace p
+		end
 	end
 end
